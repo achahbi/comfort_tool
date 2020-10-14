@@ -680,6 +680,12 @@ function update() {
           "The input parameters has been set back to their default values."
       );
       setDefaults();
+      // Recompute PMV
+      r = comf.pmvElevatedAirspeed(d.ta, d.tr, d.vel, d.rh, d.met, d.clo, 0);
+      if (!isCelsius) {
+        r.set = util.CtoF(r.set);
+      }
+      // END CHANGE
     }
     renderPmvElevResults(r);
     calcPmvElevCompliance(d, r);
