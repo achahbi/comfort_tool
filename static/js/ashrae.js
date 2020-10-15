@@ -680,6 +680,10 @@ function update() {
           "The input parameters has been set back to their default values."
       );
       setDefaults();
+      r = comf.pmvElevatedAirspeed(d.ta, d.tr, d.vel, d.rh, d.met, d.clo, 0);
+      if (!isCelsius) {
+        r.set = util.CtoF(r.set);
+      }
     }
     renderPmvElevResults(r);
     calcPmvElevCompliance(d, r);
@@ -891,6 +895,7 @@ function setDefaults() {
 
   keys.forEach(function (element) {
     document.getElementById(element).value = defaults[element];
+    d[element]=defaults[element];
   });
 }
 
